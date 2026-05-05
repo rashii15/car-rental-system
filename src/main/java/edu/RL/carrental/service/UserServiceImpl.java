@@ -16,4 +16,15 @@ public class UserServiceImpl implements UserService{
         return userRepository.save(user);
     }
 
+    @Override
+    public UserEntity loginUser(String email, String password) {
+        UserEntity user = userRepository.findByEmail(email);
+
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        } else {
+            return null;
+        }
+    }
+
 }

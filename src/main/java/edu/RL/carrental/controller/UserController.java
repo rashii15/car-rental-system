@@ -17,4 +17,9 @@ public class UserController {
     public UserEntity registerUser(@RequestBody UserEntity user) {
         return userService.saveUser(user);
     }
+
+    @PostMapping("/login")
+    public UserEntity loginUser(@RequestBody UserEntity user) {
+        return userService.loginUser(user.getEmail(), user.getPassword());
+    }
 }
