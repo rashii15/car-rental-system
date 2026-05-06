@@ -27,4 +27,26 @@ public class CarServiceImpl implements CarService{
     public List<CarEntity> searchCars(String brand) {
         return carRepository.findByBrandContainingIgnoreCase(brand);
     }
+
+    @Override
+    public CarEntity updateCar(Long id, CarEntity updatedCar) {
+        CarEntity existingCar = carRepository.findById(id).orElse(null);
+
+        if (existingCar != null) {
+            existingCar.setBrand(updatedCar.getBrand());
+            existingCar.setModel(updatedCar.getModel());
+            existingCar.setType(updatedCar.getType());
+            existingCar.setPricePerDay(updatedCar.getPricePerDay());
+            existingCar.setStatus(updatedCar.getStatus());
+
+            return carRepository.save(existingCar);
+        }
+
+        return null;
+    }
+
+    @Override
+    public void deleteCar(Long id) {
+        carRepository.deleteById(id);
+    }
 }

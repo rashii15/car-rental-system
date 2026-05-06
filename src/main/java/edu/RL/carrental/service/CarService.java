@@ -10,4 +10,8 @@ public interface CarService {
     List<CarEntity> getAllCars();
 
     List<CarEntity> searchCars(String brand);
+
+    CarEntity updateCar(Long id, CarEntity car);
+
+    void deleteCar(Long id);
 }

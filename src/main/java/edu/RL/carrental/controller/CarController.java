@@ -28,4 +28,15 @@ public class CarController {
     public List<CarEntity> searchCars(@RequestParam String brand) {
         return carService.searchCars(brand);
     }
+
+    @PutMapping("/update/{id}")
+    public CarEntity updateCar(@PathVariable Long id, @RequestBody CarEntity car) {
+        return carService.updateCar(id, car);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteCar(@PathVariable Long id) {
+        carService.deleteCar(id);
+        return "Car deleted successfully";
+    }
 }
