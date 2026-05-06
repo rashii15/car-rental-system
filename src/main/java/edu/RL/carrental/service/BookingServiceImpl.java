@@ -7,6 +7,8 @@ import edu.RL.carrental.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookingServiceImpl implements BookingService{
     @Autowired
@@ -26,5 +28,10 @@ public class BookingServiceImpl implements BookingService{
 
         booking.setStatus("PENDING");
         return bookingRepository.save(booking);
+    }
+
+    @Override
+    public List<BookingEntity> getBookingsByUser(Long userId) {
+        return bookingRepository.findByUserId(userId);
     }
 }
