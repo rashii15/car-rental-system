@@ -8,4 +8,6 @@ public interface CarService {
     CarEntity saveCar(CarEntity car);
 
     List<CarEntity> getAllCars();
+
+    List<CarEntity> searchCars(String brand);
 }

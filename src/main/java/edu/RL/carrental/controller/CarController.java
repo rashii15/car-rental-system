@@ -23,4 +23,9 @@ public class CarController {
     public List<CarEntity> getAllCars() {
         return carService.getAllCars();
     }
+
+    @GetMapping("/search")
+    public List<CarEntity> searchCars(@RequestParam String brand) {
+        return carService.searchCars(brand);
+    }
 }

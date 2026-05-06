@@ -22,4 +22,9 @@ public class CarServiceImpl implements CarService{
     public List<CarEntity> getAllCars() {
         return carRepository.findAll();
     }
+
+    @Override
+    public List<CarEntity> searchCars(String brand) {
+        return carRepository.findByBrandContainingIgnoreCase(brand);
+    }
 }
