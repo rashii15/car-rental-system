@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface BookingService {
     BookingEntity createBooking(BookingEntity booking);
+
     List<BookingEntity> getBookingsByUser(Long userId);
+
+    BookingEntity updateBookingStatus(Long id, String status);
 }

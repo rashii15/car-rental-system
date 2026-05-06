@@ -23,4 +23,9 @@ public class BookingController {
     public List<BookingEntity> getUserBookings(@PathVariable Long userId) {
         return bookingService.getBookingsByUser(userId);
     }
+
+    @PutMapping("/update-status/{id}")
+    public BookingEntity updateStatus(@PathVariable Long id, @RequestParam String status) {
+        return bookingService.updateBookingStatus(id, status);
+    }
 }

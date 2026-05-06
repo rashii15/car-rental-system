@@ -34,4 +34,21 @@ public class BookingServiceImpl implements BookingService{
     public List<BookingEntity> getBookingsByUser(Long userId) {
         return bookingRepository.findByUserId(userId);
     }
+
+    @Override
+    public BookingEntity updateBookingStatus(Long id, String status) {
+        BookingEntity booking = bookingRepository.findById(id).orElse(null);
+
+        if (booking != null) {
+            CarEntity car = carRepository.findById(booking.getCarId()).orElse(null);
+
+            if (car != null && status.equals("REJECTED")) {
+                car.setStatus("AVAILABLE");
+                carRepository.save(car);
+            }
+            return bookingRepository.save(booking);
+        }
+
+        return null;
+    }
 }
