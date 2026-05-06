@@ -17,7 +17,7 @@ public class CarEntity {
 
     private String brand;
     private String model;
-    private String type; // SUV, Sedan, etc.
+    private String type;
     private double pricePerDay;
-    private String status; // AVAILABLE, BOOKED
+    private String status;
 }
