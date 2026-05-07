@@ -28,4 +28,9 @@ public class BookingController {
     public BookingEntity updateStatus(@PathVariable Long id, @RequestParam String status) {
         return bookingService.updateBookingStatus(id, status);
     }
+
+    @GetMapping("/all")
+    public List<BookingEntity> getAllBookings() {
+        return bookingService.getAllBookings();
+    }
 }

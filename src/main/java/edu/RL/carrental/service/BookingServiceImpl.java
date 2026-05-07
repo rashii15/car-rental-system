@@ -51,4 +51,9 @@ public class BookingServiceImpl implements BookingService{
 
         return null;
     }
+
+    @Override
+    public List<BookingEntity> getAllBookings() {
+        return bookingRepository.findAll();
+    }
 }

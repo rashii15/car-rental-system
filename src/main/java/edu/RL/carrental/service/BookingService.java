@@ -10,4 +10,6 @@ public interface BookingService {
     List<BookingEntity> getBookingsByUser(Long userId);
 
     BookingEntity updateBookingStatus(Long id, String status);
+
+    List<BookingEntity> getAllBookings();
 }
