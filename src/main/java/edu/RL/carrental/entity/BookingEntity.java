@@ -1,14 +1,14 @@
 package edu.RL.carrental.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "bookings")
@@ -16,13 +16,18 @@ public class BookingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
-    private Long carId;
     private LocalDate startDate;
     private LocalDate endDate;
     private String status;
-    private String customerName;
-    private String email;
     private String licenseNumber;
+    private String paymentStatus;
+    private double totalAmount;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    private CarEntity car;
 }

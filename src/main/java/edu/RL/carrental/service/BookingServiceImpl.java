@@ -20,13 +20,14 @@ public class BookingServiceImpl implements BookingService{
     @Override
     public BookingEntity createBooking(BookingEntity booking) {
 
-        CarEntity car = carRepository.findById(booking.getCarId()).orElse(null);
+        CarEntity car = carRepository.findById(booking.getCar().getId()).orElse(null);
         if (car != null && car.getStatus().equals("AVAILABLE")) {
             car.setStatus("BOOKED");
             carRepository.save(car);
         }
 
         booking.setStatus("PENDING");
+        booking.setPaymentStatus("PENDING");
         return bookingRepository.save(booking);
     }
 
@@ -40,7 +41,9 @@ public class BookingServiceImpl implements BookingService{
         BookingEntity booking = bookingRepository.findById(id).orElse(null);
 
         if (booking != null) {
-            CarEntity car = carRepository.findById(booking.getCarId()).orElse(null);
+
+            booking.setStatus(status);
+            CarEntity car = carRepository.findById(booking.getCar().getId()).orElse(null);
 
             if (car != null && status.equals("REJECTED")) {
                 car.setStatus("AVAILABLE");
@@ -55,5 +58,27 @@ public class BookingServiceImpl implements BookingService{
     @Override
     public List<BookingEntity> getAllBookings() {
         return bookingRepository.findAll();
+    }
+
+    @Override
+    public BookingEntity updatePayment(Long id) {
+        BookingEntity booking =
+                bookingRepository.findById(id).orElse(null);
+
+        if (booking != null) {
+
+            booking.setPaymentStatus("PAID");
+
+            return bookingRepository.save(booking);
+        }
+
+        return null;
+    }
+
+    @Override
+    public BookingEntity getBookingById(Long id) {
+        return bookingRepository
+                .findById(id)
+                .orElse(null);
     }
 }

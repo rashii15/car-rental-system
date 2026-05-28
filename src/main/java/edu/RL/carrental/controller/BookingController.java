@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/bookings")
 @CrossOrigin
 public class BookingController {
     @Autowired
@@ -32,5 +32,20 @@ public class BookingController {
     @GetMapping("/all")
     public List<BookingEntity> getAllBookings() {
         return bookingService.getAllBookings();
+    }
+
+    @PutMapping("/payment/{id}")
+    public BookingEntity updatePayment(
+            @PathVariable Long id
+    ) {
+
+        return bookingService.updatePayment(id);
+    }
+
+    @GetMapping("/{id}")
+    public BookingEntity getBookingById(
+            @PathVariable Long id
+    ) {
+        return bookingService.getBookingById(id);
     }
 }

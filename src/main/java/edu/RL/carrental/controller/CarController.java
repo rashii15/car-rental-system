@@ -39,4 +39,19 @@ public class CarController {
         carService.deleteCar(id);
         return "Car deleted successfully";
     }
+
+    @GetMapping("/brand/{brand}")
+
+    public List<CarEntity> getCarsByBrand(
+            @PathVariable String brand
+    ) {
+
+        return carService.getCarsByBrand(brand);
+    }
+
+    @PutMapping("/deactivate/{id}")
+    public CarEntity deactivateCar(@PathVariable Long id) {
+
+        return carService.deactivateCar(id);
+    }
 }

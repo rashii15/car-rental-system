@@ -20,4 +20,5 @@ public class CarEntity {
     private String type;
     private double pricePerDay;
     private String status;
+    private String imageUrl;
 }

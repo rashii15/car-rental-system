@@ -14,4 +14,8 @@ public interface CarService {
     CarEntity updateCar(Long id, CarEntity car);
 
     void deleteCar(Long id);
+
+    List<CarEntity> getCarsByBrand(String brand);
+
+    CarEntity deactivateCar(Long id);
 }

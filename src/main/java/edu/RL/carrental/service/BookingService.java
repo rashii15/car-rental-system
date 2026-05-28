@@ -12,4 +12,10 @@ public interface BookingService {
     BookingEntity updateBookingStatus(Long id, String status);
 
     List<BookingEntity> getAllBookings();
+
+    BookingEntity updatePayment(Long id);
+
+    BookingEntity getBookingById(Long id);
+
+
 }

@@ -49,4 +49,31 @@ public class CarServiceImpl implements CarService{
     public void deleteCar(Long id) {
         carRepository.deleteById(id);
     }
+
+    @Override
+    public List<CarEntity> getCarsByBrand(String brand) {
+        return carRepository.findByBrandContainingIgnoreCase(brand);
+    }
+
+    @Override
+    public CarEntity deactivateCar(Long id) {
+        CarEntity car = carRepository.findById(id)
+                .orElse(null);
+
+        if (car != null) {
+
+            if (car.getStatus().equals("BOOKED")) {
+
+                throw new RuntimeException(
+                        "Cannot remove a booked car"
+                );
+            }
+
+            car.setStatus("INACTIVE");
+
+            return carRepository.save(car);
+        }
+
+        return null;
+    }
 }
